@@ -1,0 +1,215 @@
+---
+const siteName = "The Comic Compass";
+
+const personas = [
+  {
+    id: "movie-fan",
+    title: "The Movie Fan",
+    desc: "Suka film/series, bingung mau mulai baca komik dari mana.",
+    icon: "🎬",
+    color: "#E63946",
+    link: "/path/movie-to-comics"
+  },
+  {
+    id: "current-reader",
+    title: "The Completionist",
+    desc: "Mau ngejar cerita sampai ke 'Current Run' terbaru.",
+    icon: "📅",
+    color: "#457B9D",
+    link: "/path/modern-runs"
+  },
+  {
+    id: "character-lover",
+    title: "Character Buff",
+    desc: "Punya hero favorit dan cuma mau cari cerita terbaik mereka.",
+    icon: "🦸‍♂️",
+    color: "#F1FAEE", // Card text will be dark
+    link: "/pathfinder"
+  },
+  {
+    id: "event-chaser",
+    title: "Event Chaser",
+    desc: "Mau tau soal perang besar (Crossover/Events) di semesta komik.",
+    icon: "💥",
+    color: "#A8DADC",
+    link: "/path/events"
+  }
+];
+---
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{siteName} | Navigation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <main class="main-wrapper">
+        <header class="header">
+            <div class="logo">🧭 {siteName}</div>
+            <h1>How do you want to <span class="gradient-text">start your journey?</span></h1>
+            <p>Pilih kategori yang paling sesuai sama kondisi lo sekarang.</p>
+        </header>
+
+        <section class="persona-grid">
+            {personas.map(p => (
+                <a href={p.link} class="persona-card" style={`--accent: ${p.color}`}>
+                    <div class="icon-circle">{p.icon}</div>
+                    <div class="card-content">
+                        <h3>{p.title}</h3>
+                        <p>{p.desc}</p>
+                    </div>
+                    <div class="arrow">→</div>
+                </a>
+            ))}
+        </section>
+
+        <footer class="simple-footer">
+            <p>Bukan keduanya? <a href="/search">Cari manual aja</a> atau <a href="/council">tanya di forum.</a></p>
+        </footer>
+    </main>
+
+</body>
+</html>
+
+<style>
+    :root {
+        --bg: #0f172a;
+        --text-main: #f8fafc;
+        --text-muted: #94a3b8;
+        --card-bg: #1e293b;
+    }
+
+    body {
+        background-color: var(--bg);
+        color: var(--text-main);
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+    }
+
+    .main-wrapper {
+        max-width: 1000px;
+        width: 100%;
+        padding: 2rem;
+    }
+
+    .header {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .logo {
+        font-weight: 800;
+        letter-spacing: -1px;
+        margin-bottom: 1rem;
+        color: #fbbf24;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+        font-weight: 800;
+        line-height: 1.2;
+        margin: 0 0 1rem 0;
+    }
+
+    .gradient-text {
+        background: linear-gradient(90deg, #fbbf24, #f59e0b);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .header p {
+        color: var(--text-muted);
+        font-size: 1.1rem;
+    }
+
+    /* Persona Grid */
+    .persona-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .persona-card {
+        background: var(--card-bg);
+        border: 1px solid rgba(255,255,255,0.1);
+        padding: 1.5rem;
+        border-radius: 16px;
+        text-decoration: none;
+        color: white;
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Glow Effect on Hover */
+    .persona-card:hover {
+        transform: translateY(-5px);
+        border-color: var(--accent);
+        box-shadow: 0 10px 30px -10px var(--accent);
+    }
+
+    .icon-circle {
+        font-size: 2rem;
+        background: rgba(255,255,255,0.05);
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+        border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .card-content h3 {
+        margin: 0 0 0.5rem 0;
+        font-size: 1.25rem;
+    }
+
+    .card-content p {
+        margin: 0;
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        line-height: 1.4;
+    }
+
+    .arrow {
+        margin-left: auto;
+        font-size: 1.5rem;
+        opacity: 0.3;
+        transition: 0.3s;
+    }
+
+    .persona-card:hover .arrow {
+        opacity: 1;
+        transform: translateX(5px);
+        color: var(--accent);
+    }
+
+    .simple-footer {
+        text-align: center;
+        margin-top: 3rem;
+        color: var(--text-muted);
+        font-size: 0.9rem;
+    }
+
+    .simple-footer a {
+        color: #fbbf24;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    @media (max-width: 600px) {
+        .persona-grid { grid-template-columns: 1fr; }
+        h1 { font-size: 1.8rem; }
+    }
+</style>

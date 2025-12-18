@@ -1,0 +1,83 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { SITE_TITLE } from '../../consts';
+
+const movies = [
+  {
+    title: "The Batman (2022)",
+    hero: "Batman",
+    vibe: "Grounded, Noir, Detective",
+    recommendation: "Batman: Ego",
+    link: "/blog/batman-ego-guide" // Nanti kita buat kontennya
+  },
+  {
+    title: "Across the Spider-Verse",
+    hero: "Miles Morales",
+    vibe: "Multiverse, Stylish, Emotional",
+    recommendation: "Spider-Man: Miles Morales (2011)",
+    link: "/blog/miles-morales-start"
+  },
+  {
+    title: "Deadpool & Wolverine",
+    hero: "Deadpool",
+    vibe: "Funny, Violent, Team-up",
+    recommendation: "Deadpool Kills the Marvel Universe",
+    link: "/blog/deadpool-essential"
+  }
+];
+---
+
+<html lang="en">
+	<head>
+		<BaseHead title={`Movie Guide | ${SITE_TITLE}`} description="Start reading comics based on movies you love." />
+	</head>
+	<body class="bg-dark">
+		<Header />
+		<main class="content-wrapper">
+			<section class="intro">
+				<h1>You liked the <span class="text-gold">Movies</span>?</h1>
+				<p>You'll love these comics. Pilih film yang terakhir lo tonton:</p>
+			</section>
+
+			<div class="movie-grid">
+				{movies.map(m => (
+					<div class="movie-card">
+						<div class="movie-info">
+							<span class="hero-tag">{m.hero}</span>
+							<h3>{m.title}</h3>
+							<p class="vibe">Vibe: {m.vibe}</p>
+							<hr />
+							<p class="rec-text">Recommended Start:</p>
+							<a href={m.link} class="rec-title">{m.recommendation} →</a>
+						</div>
+					</div>
+				))}
+			</div>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+    .bg-dark { background-color: #0f172a; color: white; }
+	.content-wrapper { max-width: 900px; margin: 0 auto; padding: 4rem 2rem; }
+	.text-gold { color: #fbbf24; }
+	.intro { text-align: center; margin-bottom: 3rem; }
+	.movie-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+	.movie-card { 
+		background: #1e293b; 
+		border-radius: 12px; 
+		overflow: hidden; 
+		border: 1px solid rgba(255,255,255,0.1);
+		transition: 0.3s;
+	}
+	.movie-card:hover { transform: translateY(-5px); border-color: #fbbf24; }
+	.movie-info { padding: 1.5rem; }
+	.hero-tag { font-size: 0.7rem; font-weight: 800; color: #fbbf24; text-transform: uppercase; }
+	.vibe { font-size: 0.8rem; color: #94a3b8; }
+	.rec-text { font-size: 0.9rem; margin-top: 1rem; color: #cbd5e1; }
+	.rec-title { color: white; text-decoration: none; font-weight: 700; display: block; margin-top: 0.5rem; }
+	hr { border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 1rem 0; }
+</style>
