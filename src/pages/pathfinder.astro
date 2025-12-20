@@ -1,0 +1,109 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE } from '../consts';
+
+// Data dummy hero untuk MVP
+const characters = [
+  { name: "Batman", publisher: "DC", slug: "batman-guide", icon: "🦇" },
+  { name: "Spider-Man", publisher: "Marvel", slug: "spider-man-guide", icon: "🕸️" },
+  { name: "Superman", publisher: "DC", slug: "superman-guide", icon: "🦸‍♂️" },
+  { name: "X-Men", publisher: "Marvel", slug: "x-men-guide", icon: "❌" },
+  { name: "Wonder Woman", publisher: "DC", slug: "wonder-woman-guide", icon: "⚔️" },
+  { name: "Avengers", publisher: "Marvel", slug: "avengers-guide", icon: "🅰️" },
+];
+---
+
+<html lang="en">
+	<head>
+		<BaseHead title={`Pathfinder | ${SITE_TITLE}`} description="Pilih hero favoritmu dan temukan jalur baca terbaiknya." />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section class="intro">
+				<h1>Character <span class="text-gold">Pathfinder</span></h1>
+				<p>Tersesat di Multiverse? Pilih pahlawanmu dan biarkan kami menunjukkan jalannya.</p>
+			</section>
+
+			<div class="search-box">
+				<input type="text" placeholder="Cari Hero (misal: Batman, Miles Morales...)" />
+			</div>
+
+			<div class="hero-grid">
+				{characters.map(char => (
+					<a href={`/blog/${char.slug}`} class="hero-card">
+						<div class="hero-icon">{char.icon}</div>
+						<div class="hero-details">
+							<h3>{char.name}</h3>
+							<span class={`pub-badge ${char.publisher.toLowerCase()}`}>{char.publisher}</span>
+						</div>
+					</a>
+				))}
+			</div>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.intro { text-align: center; margin-bottom: 2rem; }
+	.text-gold { color: var(--accent); }
+	
+	.search-box {
+		margin-bottom: 3rem;
+		max-width: 600px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.search-box input {
+		width: 100%;
+		padding: 1rem;
+		border-radius: 12px;
+		border: 1px solid rgba(255,255,255,0.1);
+		background: var(--card-bg);
+		color: white;
+		font-size: 1rem;
+		outline: none;
+	}
+	.search-box input:focus { border-color: var(--accent); }
+
+	.hero-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		gap: 1.5rem;
+	}
+
+	.hero-card {
+		background: var(--card-bg);
+		padding: 1.5rem;
+		border-radius: 16px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		transition: 0.3s;
+		border: 1px solid rgba(255,255,255,0.05);
+		text-decoration: none;
+	}
+	.hero-card:hover {
+		transform: translateY(-5px);
+		border-color: var(--accent);
+		box-shadow: 0 10px 30px -10px var(--accent);
+	}
+
+	.hero-icon { font-size: 3rem; margin-bottom: 1rem; }
+	.hero-details h3 { margin: 0 0 0.5rem 0; font-size: 1.2rem; color: white; }
+	
+	.pub-badge {
+		font-size: 0.7rem;
+		font-weight: 800;
+		padding: 0.2rem 0.6rem;
+		border-radius: 4px;
+		color: white;
+		text-transform: uppercase;
+	}
+	.dc { background: #0476f2; }
+	.marvel { background: #ed1d24; }
+</style>

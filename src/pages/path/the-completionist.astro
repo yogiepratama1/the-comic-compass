@@ -1,0 +1,71 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { SITE_TITLE } from '../../consts';
+
+const currentPoints = [
+  {
+    universe: "DC Absolute",
+    title: "The Absolute Universe (2024)",
+    desc: "Semesta baru DC. Tidak perlu baca komik lama. Batman, Superman, & Wonder Woman lahir kembali dengan latar berbeda.",
+    tag: "Hard Reboot",
+    link: "/blog/absolute-dc-guide"
+  },
+  {
+    universe: "Marvel Ultimate",
+    title: "The New Ultimate Universe (2024)",
+    desc: "Spider-Man yang sudah menikah, X-Men yang berbeda. Ditulis oleh Jonathan Hickman untuk pembaca baru.",
+    tag: "Fresh Start",
+    link: "/blog/ultimate-marvel-2024"
+  }
+];
+---
+
+<html lang="en">
+	<head>
+		<BaseHead title={`Modern Runs | ${SITE_TITLE}`} description="Mulai baca dari event atau semesta terbaru." />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section class="intro">
+				<h1>Catch Up with <span class="text-gold">Modern Runs</span></h1>
+				<p>Mau baca yang paling baru rilis di toko buku? Mulai dari titik ini:</p>
+			</section>
+
+			<div class="run-list">
+				{currentPoints.map(point => (
+					<div class="run-card">
+						<div class="run-header">
+							<span class="pub-tag">{point.universe}</span>
+							<span class="status-tag">{point.tag}</span>
+						</div>
+						<h3>{point.title}</h3>
+						<p>{point.desc}</p>
+						<a href={point.link} class="btn-read">Lihat Panduan Baca →</a>
+					</div>
+				))}
+			</div>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.intro { text-align: center; margin-bottom: 3rem; }
+	.text-gold { color: var(--accent); }
+	.run-list { display: flex; flex-direction: column; gap: 2rem; }
+	.run-card { 
+		background: var(--card-bg); 
+		padding: 2rem; 
+		border-radius: 16px; 
+		border: 1px solid rgba(255,255,255,0.05);
+	}
+	.run-header { display: flex; justify-content: space-between; margin-bottom: 1rem; }
+	.pub-tag { color: var(--accent); font-weight: 800; font-size: 0.8rem; }
+	.status-tag { background: rgba(255,255,255,0.1); padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.7rem; }
+	.run-card h3 { margin-top: 0; }
+	.run-card p { color: var(--text-muted); margin-bottom: 1.5rem; }
+	.btn-read { font-weight: 700; text-decoration: none; }
+</style>

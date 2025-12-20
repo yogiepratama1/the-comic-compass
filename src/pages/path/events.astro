@@ -1,0 +1,403 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { SITE_TITLE } from '../../consts';
+
+const events = [
+  {
+    title: "Civil War",
+    universe: "Marvel",
+    years: "2006-2007",
+    vibe: "Conflict, Ideological War, Fragmented Heroes",
+    summary: "Superhero registration act memecah Avengers menjadi dua kubu: Tony Stark vs Steve Rogers.",
+    reading_order: [
+      "Civil War (2006) #1-7",
+      "Supporting tie-ins dari Amazing Spider-Man, X-Men, Fantastic Four"
+    ],
+    link: "/blog/civil-war-guide"
+  },
+  {
+    title: "Infinity Gauntlet",
+    universe: "Marvel",
+    years: "1991-1992",
+    vibe: "Cosmic, Universe-ending Stakes, Thanos Dominance",
+    summary: "Thanos mengumpulkan Infinity Stones untuk mengontrol segala hal. Avengers berjuang untuk menghentikannya.",
+    reading_order: [
+      "The Infinity Gauntlet (1991) #1-6",
+      "Silver Surfer: Infinity Gauntlet tie-ins"
+    ],
+    link: "/blog/infinity-gauntlet-guide"
+  },
+  {
+    title: "Crisis on Infinite Earths",
+    universe: "DC",
+    years: "1985-1986",
+    vibe: "Multiverse Collapse, Legacy-Defining, Deaths & New Beginnings",
+    summary: "Semua versi DC Universe bergabung untuk menghadapi Anti-Monitor. Banyak hero mati, sejumlah diubah selamanya.",
+    reading_order: [
+      "Crisis on Infinite Earths (1985) #1-12",
+      "Supporting mini-series dari berbagai heroes"
+    ],
+    link: "/blog/crisis-infinite-earths-guide"
+  },
+  {
+    title: "House of X / Powers of X",
+    universe: "Marvel",
+    years: "2019-2020",
+    vibe: "Resurrection, Political Intrigue, X-Men Renaissance",
+    summary: "Professor X dan Magneto membangun nation-state baru untuk mutants. Mendefinisikan ulang seluruh X-Men universe.",
+    reading_order: [
+      "House of X (2019) #1-6",
+      "Powers of X (2019) #1-6",
+      "Lanjut ke Krakoa era runs"
+    ],
+    link: "/blog/house-of-x-guide"
+  },
+  {
+    title: "Knightfall",
+    universe: "DC",
+    years: "1993-1994",
+    vibe: "Dark, Psychological, Batman's Defeat",
+    summary: "Bane memecahkan punggung Batman. Azrael menggantikan Bruce. Event yang mengubah cara orang lihat Batman.",
+    reading_order: [
+      "Batman: Knightfall (TPB berisi semua bagian penting)",
+      "Meliputi Batman #497-500, Detective Comics #659-666"
+    ],
+    link: "/blog/knightfall-guide"
+  },
+  {
+    title: "Avengers vs. X-Men",
+    universe: "Marvel",
+    years: "2012-2013",
+    vibe: "Team Conflict, Power Struggles, Divided Loyalties",
+    summary: "Phoenix Force muncul, memicu perang antara Avengers dan X-Men untuk menentukan nasib mutantkind.",
+    reading_order: [
+      "Avengers vs. X-Men (2012) #1-12",
+      "AvX tie-ins (extensive, tapi optional)",
+      "Aftermath: Avengers Assemble, All-New X-Men"
+    ],
+    link: "/blog/avx-guide"
+  }
+];
+---
+
+<html lang="en">
+	<head>
+		<BaseHead title={`Events Guide | ${SITE_TITLE}`} description="Follow the biggest crossover events in DC and Marvel comics." />
+	</head>
+	<body class="bg-dark">
+		<Header />
+		<main class="content-wrapper">
+			<section class="intro">
+				<h1>The <span class="text-gold">Big Events</span></h1>
+				<p>Perang besar yang mengubah selamanya. Pilih event yang menarik:</p>
+			</section>
+
+			<div class="events-grid">
+				{events.map(e => (
+					<div class="event-card">
+						<div class="event-header">
+							<span class="universe-tag">{e.universe}</span>
+							<span class="years">{e.years}</span>
+						</div>
+						<div class="event-content">
+							<h3>{e.title}</h3>
+							<p class="vibe">Vibe: {e.vibe}</p>
+							<p class="summary">{e.summary}</p>
+							<hr />
+							<p class="reading-label">Where to Start:</p>
+							<ul class="reading-order">
+								{e.reading_order.map(item => (
+									<li>{item}</li>
+								))}
+							</ul>
+							<a href={e.link} class="guide-link">Lihat Reading Guide →</a>
+						</div>
+					</div>
+				))}
+			</div>
+
+			<section class="tips-section">
+				<h2>Tips Ngikutin Event</h2>
+				<div class="tips-grid">
+					<div class="tip-card">
+						<span class="tip-icon">📖</span>
+						<h4>Main Series Dulu</h4>
+						<p>Mulai dari comic event utama sebelum lompat ke tie-ins. Itu cukup untuk ngerti cerita.</p>
+					</div>
+					<div class="tip-card">
+						<span class="tip-icon">⏰</span>
+						<h4>Jangan Kejar Semua</h4>
+						<p>Event besar punya puluhan tie-ins. Fokus ke yang relevan sama karakter favorit lo aja.</p>
+					</div>
+					<div class="tip-card">
+						<span class="tip-icon">🔄</span>
+						<h4>Urutan Publish vs Urutan Cerita</h4>
+						<p>Kadang reading order berbeda dari publish order. Cek guides untuk urutan cerita yang benar.</p>
+					</div>
+				</div>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.bg-dark { 
+		background-color: #0f172a; 
+		color: white; 
+	}
+	
+	.content-wrapper { 
+		max-width: 900px; 
+		margin: 0 auto; 
+		padding: 2rem 1rem;
+	}
+
+	/* Typography */
+	.text-gold { 
+		color: #fbbf24; 
+	}
+
+	.intro { 
+		text-align: center; 
+		margin-bottom: 2rem; 
+	}
+
+	.intro h1 {
+		font-size: 1.75rem;
+		font-weight: 800;
+		margin: 0 0 0.5rem 0;
+	}
+
+	.intro p {
+		color: #94a3b8;
+		font-size: 0.95rem;
+		margin: 0;
+	}
+
+	/* Events Grid - Mobile First */
+	.events-grid { 
+		display: grid; 
+		grid-template-columns: 1fr; 
+		gap: 1.5rem; 
+		margin-bottom: 3rem;
+	}
+
+	@media (min-width: 640px) {
+		.events-grid {
+			grid-template-columns: repeat(2, 1fr);
+			gap: 1.75rem;
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.events-grid {
+			grid-template-columns: repeat(3, 1fr);
+			gap: 2rem;
+		}
+	}
+
+	.event-card { 
+		background: #1e293b; 
+		border-radius: 12px; 
+		overflow: hidden; 
+		border: 1px solid rgba(255,255,255,0.1);
+		transition: all 0.3s ease;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.event-card:hover { 
+		transform: translateY(-4px); 
+		border-color: #fbbf24;
+		box-shadow: 0 8px 24px rgba(251, 191, 36, 0.15);
+	}
+
+	.event-header {
+		display: flex;
+		gap: 0.75rem;
+		padding: 1rem;
+		background: rgba(255,255,255,0.03);
+		border-bottom: 1px solid rgba(255,255,255,0.05);
+		flex-wrap: wrap;
+	}
+
+	.universe-tag { 
+		font-size: 0.7rem; 
+		font-weight: 800; 
+		color: #fbbf24; 
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
+		background: rgba(251, 191, 36, 0.1);
+		padding: 0.25rem 0.75rem;
+		border-radius: 4px;
+	}
+
+	.years {
+		font-size: 0.7rem;
+		font-weight: 700;
+		color: #cbd5e1;
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
+		background: rgba(255,255,255,0.05);
+		padding: 0.25rem 0.75rem;
+		border-radius: 4px;
+	}
+
+	.event-content { 
+		padding: 1.5rem;
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.event-content h3 {
+		font-size: 1.25rem;
+		margin: 0 0 0.5rem 0;
+		font-weight: 800;
+	}
+
+	.vibe { 
+		font-size: 0.75rem; 
+		color: #94a3b8;
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
+		margin: 0 0 0.75rem 0;
+		font-weight: 600;
+	}
+
+	.summary {
+		font-size: 0.9rem;
+		color: #cbd5e1;
+		line-height: 1.5;
+		margin: 0 0 1rem 0;
+	}
+
+	hr { 
+		border: 0; 
+		border-top: 1px solid rgba(255,255,255,0.1); 
+		margin: 1rem 0; 
+	}
+
+	.reading-label { 
+		font-size: 0.75rem; 
+		color: #94a3b8;
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
+		margin: 0 0 0.5rem 0;
+		font-weight: 600;
+	}
+
+	.reading-order {
+		list-style: none;
+		padding: 0;
+		margin: 0 0 1rem 0;
+	}
+
+	.reading-order li {
+		font-size: 0.85rem;
+		color: #cbd5e1;
+		margin-bottom: 0.4rem;
+		padding-left: 1.25rem;
+		position: relative;
+	}
+
+	.reading-order li:before {
+		content: "→";
+		position: absolute;
+		left: 0;
+		color: #fbbf24;
+	}
+
+	.guide-link { 
+		color: #fbbf24; 
+		text-decoration: none; 
+		font-weight: 700;
+		font-size: 0.9rem;
+		display: inline-block;
+		margin-top: auto;
+		transition: 0.2s;
+	}
+
+	.guide-link:hover {
+		text-decoration: underline;
+	}
+
+	/* Tips Section - Mobile First */
+	.tips-section {
+		margin-top: 3rem;
+		padding-top: 2rem;
+		border-top: 1px solid rgba(255,255,255,0.1);
+	}
+
+	.tips-section h2 {
+		font-size: 1.5rem;
+		margin: 0 0 1.5rem 0;
+		text-align: center;
+		font-weight: 800;
+	}
+
+	.tips-grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 1.5rem;
+	}
+
+	@media (min-width: 640px) {
+		.tips-grid {
+			grid-template-columns: repeat(3, 1fr);
+			gap: 1.75rem;
+		}
+	}
+
+	.tip-card {
+		background: rgba(255,255,255,0.03);
+		border: 1px solid rgba(255,255,255,0.05);
+		border-radius: 8px;
+		padding: 1.25rem;
+		text-align: center;
+		transition: 0.3s;
+	}
+
+	.tip-card:hover {
+		background: rgba(251, 191, 36, 0.05);
+		border-color: rgba(251, 191, 36, 0.3);
+	}
+
+	.tip-icon {
+		font-size: 2rem;
+		display: block;
+		margin-bottom: 0.75rem;
+	}
+
+	.tip-card h4 {
+		font-size: 1rem;
+		margin: 0 0 0.5rem 0;
+		font-weight: 700;
+		color: white;
+	}
+
+	.tip-card p {
+		font-size: 0.85rem;
+		color: #cbd5e1;
+		line-height: 1.5;
+		margin: 0;
+	}
+
+	/* Desktop padding increase */
+	@media (min-width: 768px) {
+		.content-wrapper {
+			padding: 4rem 2rem;
+		}
+
+		.intro h1 {
+			font-size: 2.5rem;
+		}
+
+		.intro p {
+			font-size: 1.1rem;
+		}
+	}
+</style>
